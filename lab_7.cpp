@@ -14,7 +14,7 @@ void inpm(int a[N][N])
 	{
 		for (j = 0; j < N; j++)
 		{
-			printf("a[%d][%d]:", i, j);
+			printf("A[%d][%d]:", i, j);
 			scanf_s("%d", &a[i][j]);
 		}
 	}
@@ -37,6 +37,25 @@ void inpmf(int a[N][N])
 		fclose(fp);
 	}
 }
+//массив x
+int* msx(int(*a)[N], int* x, void(*pfunc)(int[N][N]))
+{
+	int i, j, max;
+	pfunc(a);
+	for (i = 0; i < N; i++)
+	{
+		max = a[i][0];
+		for (j = 0; j < N; j++)
+		{
+			if (a[i][j] >= max)
+			{
+				x[i] = a[i][j];
+				max = a[i][j];
+			}
+		}
+	}
+	return x;
+}
 int main()
 {
 	setlocale(LC_CTYPE, "");
@@ -44,7 +63,7 @@ int main()
 	void(*pfunc)(int[N][N]);
 	do
 	{
-		printf("Укажите 1, если хотите ввести элементы с клавиатуры. Укажите 2, если из файла\n");
+		printf("Укажите 1, если хотите ввести элементы с клавиатуры; Укажите 2, если из файла:\n");
 		scanf("%d", &c);
 	} while (c != 1 && c != 2);
 	switch (c)
