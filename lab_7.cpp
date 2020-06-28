@@ -56,6 +56,20 @@ int* msx(int(*a)[N], int* x, void(*pfunc)(int[N][N]))
 	}
 	return x;
 }
+int minx(int x[N], int const arraySize, int min, int i)
+{
+	if (x[i] < min)
+		min = x[i];
+	i++;
+	if (i < N)
+	{
+		minx(x, arraySize, min, i);
+	}
+	else
+	{
+		return min;
+	}
+}
 int main()
 {
 	setlocale(LC_CTYPE, "");
