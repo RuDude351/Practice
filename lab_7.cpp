@@ -54,8 +54,11 @@ int* msx(int(*a)[N], int* x, void(*pfunc)(int[N][N]))
 			}
 		}
 	}
+	printf("Минимальное в массиве X: %d", minx(x, N, x[0], 1));
+	printf("\n");
 	return x;
 }
+//минимальное из массива X
 int minx(int x[N], int const arraySize, int min, int i)
 {
 	if (x[i] < min)
@@ -69,6 +72,22 @@ int minx(int x[N], int const arraySize, int min, int i)
 	{
 		return min;
 	}
+}
+//вывод
+void outp(const int x[], const int a[N][N])
+{
+	int i, j;
+	printf("А:\n");
+	for (i = 0; i < N; i++)
+	{
+		for (j = 0; j < N; j++)
+			printf("%5d", a[i][j]);
+		printf("\n");
+	}
+	printf("Х:\n");
+	for (i = 0; i < N; i++)
+		printf("%5d", x[i]);
+	printf("\n");
 }
 int main()
 {
@@ -86,5 +105,6 @@ int main()
 		break;
 	case 2: pfunc = &inpmf;
 	}
+	outp(msx(a, x, pfunc), a);
 	_getch();
 }
