@@ -89,6 +89,28 @@ void outp(const int x[], const int a[N][N])
 		printf("%5d", x[i]);
 	printf("\n");
 }
+//вывод(файл)
+void outpf(const int x[], const int a[N][N])
+{
+	int i, j;
+	FILE* fp;
+	fp = fopen("lab_7_2.txt", "w");
+	if (fp)
+	{
+		fprintf(fp, "А:\n");
+		for (i = 0; i < N; i++)
+		{
+			for (j = 0; j < N; j++)
+				fprintf(fp, "%5d", a[i][j]);
+			fprintf(fp, "\n");
+		}
+		fprintf(fp, "Х:\n");
+		for (i = 0; i < N; i++)
+			fprintf(fp, "%5d", x[i]);
+		fprintf(fp, "\n");
+		fclose(fp);
+	}
+}
 int main()
 {
 	setlocale(LC_CTYPE, "");
@@ -106,5 +128,6 @@ int main()
 	case 2: pfunc = &inpmf;
 	}
 	outp(msx(a, x, pfunc), a);
+	outpf(msx(a, x, pfunc), a);
 	_getch();
 }
